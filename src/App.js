@@ -2,29 +2,106 @@ import React, { useState } from 'react';
 import './style.css';
 
 const App = () => {
-  const [name, setName] = useState();
-  const [fullName, setFullname] = useState();
+  const [fullName, setFullName] = useState({
+    fname: '',
+    lname: '',
+    emailID: '',
+    pnum: '',
+  });
 
-  const changeEvent = event => {
+  const inputEvent = (event) => {
     console.log(event.target.value);
-    setName(event.target.value);
+    console.log(event.target.name);
+
+    //const value = event.target.value;
+    //const name = event.target.name;
+
+    const {value,name} = event.target;
+
+    setFullName((prevValue) => {
+      //console.log(prevValue.fName)
+      if (name === 'fName') {
+        return {
+          fname: value,
+          lname: prevValue.lname,
+          emailID: prevValue.emailID,
+          pnum : prevValue.pnum,
+        };
+      } else if (name === 'lName') {
+        return {
+          fname: prevValue.fname,
+          lname: value,
+          emailID: prevValue.emailID,
+          pnum : prevValue.pnum,
+        };
+      }  else if (name === 'eMail') {
+        return {
+          fname: prevValue.fname,
+          lname: prevValue.lname,
+          emailID: value,
+          pnum : prevValue.pnum,
+        };
+      }  else if (name === 'pNum') {
+        return {
+          fname: prevValue.fname,
+          lname: prevValue.lname,
+          emailID: prevValue.emailID,
+          pnum : value,
+        };
+      }
+    });
   };
 
-  const onSubmit = () => {
-    setFullname(name);
+  const onSubmits = (event) => {
+    event.preventDefault();
+    alert('form submitted');
   };
 
   return (
     <>
-      <div>
-        <h1> Hello {fullName} </h1>
-        <input
-          type="text"
-          placeholder="Enter Your Name"
-          onChange={changeEvent}
-          input={name}
-        />
-        <button onClick={onSubmit}> Click Me </button>
+      <div className="main_div">
+        <form onSubmit={onSubmits}>
+          <div>
+            <h1>
+              Hello {fullName.fname}
+              {fullName.lname}
+            </h1>
+            <h2> {fullName.emailID}</h2>
+            <p> {fullName.pnum} </p>
+            <input
+              type="text"
+              placeholder="Enter Your Name"
+              name="fName"
+              onChange={inputEvent}
+              value={fullName.fname}
+            />
+            <br />
+            <input
+              type="text"
+              placeholder="Enter Your Last Name"
+              name="lName"
+              onChange={inputEvent}
+              value={fullName.lname}
+            />
+            <br />
+            <input
+              type="email"
+              placeholder="Enter Your Email ID"
+              name="eMail"
+              onChange={inputEvent}
+              value={fullName.emailID}
+            />
+            <br />
+            <input
+              type="number"
+              placeholder="Enter Your Phone Number"
+              name="pNum"
+              onChange={inputEvent}
+              value={fullName.pnum}
+            />
+            <button type="submit"> Click Me </button>
+          </div>
+        </form>
       </div>
     </>
   );

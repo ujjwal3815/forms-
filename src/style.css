@@ -20,10 +20,23 @@ h1 {
   color: white;
   background: transparent;
   text-shadow: 0 2px 2px black;
+  font-size: 60px;
+}
+
+h2 {
+  color:dodgerblue;
+  background: transparent;
+  text-shadow: 0 2px 2px black;
+}
+
+p {
+  color:yellowgreen;
+  background: transparent;
+  text-shadow: 0 2px 2px black;
 }
 
 input {
-  width: 50%;
+  width: 400px;
   padding: 10px 20px;
   border: none;
   margin: 20px 0;
