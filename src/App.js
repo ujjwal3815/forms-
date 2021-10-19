@@ -7,6 +7,7 @@ const App = () => {
     lname: '',
     emailID: '',
     pnum: '',
+    qual: '',
   });
 
   const inputEvent = (event) => {
@@ -19,36 +20,41 @@ const App = () => {
     const {value,name} = event.target;
 
     setFullName((prevValue) => {
-      //console.log(prevValue.fName)
-      if (name === 'fName') {
-        return {
-          fname: value,
-          lname: prevValue.lname,
-          emailID: prevValue.emailID,
-          pnum : prevValue.pnum,
-        };
-      } else if (name === 'lName') {
-        return {
-          fname: prevValue.fname,
-          lname: value,
-          emailID: prevValue.emailID,
-          pnum : prevValue.pnum,
-        };
-      }  else if (name === 'eMail') {
-        return {
-          fname: prevValue.fname,
-          lname: prevValue.lname,
-          emailID: value,
-          pnum : prevValue.pnum,
-        };
-      }  else if (name === 'pNum') {
-        return {
-          fname: prevValue.fname,
-          lname: prevValue.lname,
-          emailID: prevValue.emailID,
-          pnum : value,
-        };
+
+      return {
+        ...prevValue,
+        [name] : value,
       }
+      //console.log(prevValue.fName)
+      //if (name === 'fName') {
+      // return {
+      //fname: value,
+      // lname: prevValue.lname,
+      // emailID: prevValue.emailID,
+      // pnum : prevValue.pnum,
+      // };
+      // } else if (name === 'lName') {
+      //return {
+      //  fname: prevValue.fname,
+      //  lname: value,
+      //  emailID: prevValue.emailID,
+      //   pnum : prevValue.pnum,
+      //  };
+      // }  else if (name === 'eMail') {
+      // return {
+      // fname: prevValue.fname,
+      // lname: prevValue.lname,
+      // emailID: value,
+      // pnum : prevValue.pnum,
+      // };
+      // }  else if (name === 'pNum') {
+      // return {
+      // fname: prevValue.fname,
+      // lname: prevValue.lname,
+      // emailID: prevValue.emailID,
+      // pnum : value,
+      // };
+      // }
     });
   };
 
@@ -68,10 +74,11 @@ const App = () => {
             </h1>
             <h2> {fullName.emailID}</h2>
             <p> {fullName.pnum} </p>
+            <p> {fullName.qual} </p>
             <input
               type="text"
               placeholder="Enter Your Name"
-              name="fName"
+              name="fname"
               onChange={inputEvent}
               value={fullName.fname}
             />
@@ -79,7 +86,7 @@ const App = () => {
             <input
               type="text"
               placeholder="Enter Your Last Name"
-              name="lName"
+              name="lname"
               onChange={inputEvent}
               value={fullName.lname}
             />
@@ -87,7 +94,7 @@ const App = () => {
             <input
               type="email"
               placeholder="Enter Your Email ID"
-              name="eMail"
+              name="emailID"
               onChange={inputEvent}
               value={fullName.emailID}
             />
@@ -95,9 +102,17 @@ const App = () => {
             <input
               type="number"
               placeholder="Enter Your Phone Number"
-              name="pNum"
+              name="pnum"
               onChange={inputEvent}
               value={fullName.pnum}
+            />
+            <br />
+            <input
+              type="text"
+              placeholder="Enter Your qualification"
+              name="qual"
+              onChange={inputEvent}
+              value={fullName.qual}
             />
             <button type="submit"> Click Me </button>
           </div>
